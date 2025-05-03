@@ -13,7 +13,7 @@ const FoodItem = ({ id, name, price, image, description, category }) => {
         <img src={image} alt="food_item" className="food_item_image"/>
         {!cardItems[id] ? (
           <img
-            src={assets.add_icon_white}
+              src={assets.add_icon_white}
             alt=""
             className="add"
             onClick={() => addToCart(id)}

@@ -3,7 +3,7 @@ import "./AppComponent.css";
 import { assets } from "../../assets/assets";
 const AppComponent = () => {
   return (
-    <div className="app_download">
+    <div className="app_download" id="app_download">
       <p>
         For Better Experience Download <br /> Tomato App
       </p>
