@@ -9,7 +9,6 @@ const Cart = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Navbar />
       <div className="cart">
         <div className="cart_items">
           <div className="cart_items_title">
@@ -76,7 +75,6 @@ const Cart = () => {
         </div>
       </div>
 
-      <Footer />
     </>
   );
 };

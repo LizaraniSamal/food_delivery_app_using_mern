@@ -11,12 +11,10 @@ const Home = () => {
   return (
     <>
     <div>
-      <Navbar/>
       <Header/>
       <ExploreMenu category={category} setCategory ={setCategory}/>
       <FoodDisplay category={category}/>
       <AppComponent/>
-      <Footer/>
     </div>
     </>
   )

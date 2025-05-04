@@ -15,6 +15,12 @@ const Add = () => {
     category: "",
   };
 
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    description: Yup.string().required("Description is required"),
+    price: Yup.number().required("Price is required").positive("Must be positive"),
+    category: Yup.string().required("Category is required"),
+  });
   
   const {
     values,
@@ -26,7 +32,13 @@ const Add = () => {
     resetForm,
   } = useFormik({
     initialValues: initialState,
+    validationSchema: validationSchema,
     onSubmit: async (values) => {
+      if (!image) {
+        toast.error("Image is required");
+        return;
+      }
+      
       console.log(values);
       const formData = new FormData();
       formData.append("name",values.name)
@@ -38,13 +50,14 @@ const Add = () => {
       console.log(response.data);
       if(response.data.success){
           setImage(false);
-          toast.success(response.data.message)
+          toast.success(response.data.message);
+          resetForm();
+
       }
       else{
           toast.error(response.data.message);
       }
       
-      resetForm();
     },
   });
 
@@ -64,7 +77,7 @@ const Add = () => {
             id="image"
             onChange={(e) => setImage(e.target.files[0])}
             hidden
-            required
+            
           />
         </div>
         <div className="add_product_name flex_col">

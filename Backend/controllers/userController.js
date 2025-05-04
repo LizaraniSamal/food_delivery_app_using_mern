@@ -7,25 +7,25 @@ import validator from "validator";
 
 //login user
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;  // 1️⃣ Extract email & password from request body
+  const { email, password } = req.body;  // 1.Extract email & password from request body
 
   try {
-    const user = await userModel.findOne({ email });  // 2️⃣ Find user in database by email
+    const user = await userModel.findOne({ email });  // 2. Find user in database by email
     
-    if (!user) {  // 3️⃣ If user is not found, return an error response
+    if (!user) {  // 3️. If user is not found, return an error response
       return res.json({ success: false, message: "User doesn't exist" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);  // 4️⃣ Compare provided password with hashed password in DB
+    const isMatch = await bcrypt.compare(password, user.password);  // 4️. Compare provided password with hashed password in DB
     
-    if (!isMatch) {  // 5️⃣ If passwords don't match, return an error response
+    if (!isMatch) {  // 5️. If passwords don't match, return an error response
       return res.json({ success: false, message: "Invalid Credentials" });
     }
 
-    const token = createToken(user._id);  // 6️⃣ Generate JWT token for authentication
+    const token = createToken(user._id);  // 6️. Generate JWT token for authentication
 
-    res.json({ success: true, token });  // 7️⃣ Send token in response if login is successful
-  } catch (err) {  // 8️⃣ Handle any unexpected errors
+    res.json({ success: true, token });  // 7️. Send token in response if login is successful
+  } catch (err) {  // 8️. Handle any unexpected errors
     console.log(err);
     res.json({ success: false, message: "Error" });
   }

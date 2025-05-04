@@ -7,7 +7,6 @@ const PlaceOrder = () => {
     const {getTotalCartAmount} = useContext(StoreContext);
   return (
     <>    
-      <Navbar />
       <form className="place_order">
         <div className="place_order_left">
           <p className="title">Delivery Information</p>
@@ -52,7 +51,6 @@ const PlaceOrder = () => {
           </div>
         </div>
       </form>
-      <Footer />
     </>
   );
 };

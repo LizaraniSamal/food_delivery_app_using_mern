@@ -1,57 +1,46 @@
 import React from "react";
-import "./Login.css";
-import { useNavigate } from "react-router-dom";
-const Login = () => {
-    const navigate = useNavigate();
-    const handleLogin = (e) => {
-      e.preventDefault();
-      alert("login successfully");
-      navigate("/");
-    }
+import "./Login.css"
+import { assets } from "../../assets/assets";
+import { useState } from "react";
 
+const Login = ({ setShowLogin }) => {
+  const [currState, setCurrState] = useState("Login");
   return (
-    <>
-      <section className="container forms">
-    <div className="form login">
-      <div className="form-content">
-        <header>Login</header>
-        <form action="#">
-          <div className="field input-field">
-            <input type="email" placeholder="Email" className="input"/>
-          </div>
-          <div className="field input-field">
-            <input type="password" placeholder="Password" className="password"/>
-            <i className='bx bx-hide eye-icon'></i>
-          </div>
-          <div className="form-link">
-            <a href="#" className="forgot-pass">Forgot password?</a>
-          </div>
-          <div className="field button-field">
-            <button className="login_btn" onClick={handleLogin}>Login</button>
-          </div>
-        </form>
-        <div className="form-link">
-          <span>Don't have an account? <a href="#" className="link signup-link" onClick={() => navigate("/signup")}>Signup</a></span>
+    <div className="login_popup">
+      <form action="" className="login_popup_container">
+        <div className="login_popup_title">
+          <h2>{currState}</h2>
+          <img
+            onClick={() => setShowLogin(false)}
+            src={assets.cross_icon}
+            alt=""
+          />
         </div>
-      </div>
-      <div className="line"></div>
-      <div className="media-options">
-        <a href="#" className="field facebook">
-          <img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-512.png" alt="facebook" className="google-img"/>
-          <span>Login with Facebook</span>
-        </a>
-      </div>
-      <div className="media-options">
-        <a href="#" className="field google">
-          <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" alt="" className="google-img"/>
-          <span>
-            with Google</span>
-        </a>
-      </div>
+        <div className="login_popup_input">
+          {currState === "Login" ? (
+            <></>
+          ) : (
+            <input type="text" placeholder="Your name" />
+          )}
+          <input type="email" placeholder="Your email" />
+          <input type="password" placeholder="password" />
+        </div>
+        <button>{currState === "Sign Up" ? "Create account" : "Login"}</button>
+        <div className="login_popup_condition">
+          <input type="checkbox" />
+          <p>By continuing, i agree to the terms of use and privacy policy</p>
+        </div>
+        {currState === "Login" ? (
+          <p>
+            Create a new account? <span onClick={() => setCurrState("Sign Up")}>Click here</span>
+          </p>
+        ) : (
+          <p>
+            Already have an account? <span onClick={() => setCurrState("Login")}>Login here</span>
+          </p>
+        )}
+      </form>
     </div>
-    
-  </section>
-    </>
   );
 };
 
