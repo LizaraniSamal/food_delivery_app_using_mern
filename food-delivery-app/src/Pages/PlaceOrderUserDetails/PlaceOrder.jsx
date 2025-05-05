@@ -3,14 +3,10 @@ import "./PlaceOrder.css";
 import Navbar from "../../Components/Navbar/Navbar";
 import Footer from "../../Components/Footer/Footer";
 import { StoreContext } from "../../Context/StoreContext";
-import { useNavigate } from "react-router-dom";
 const PlaceOrder = () => {
     const {getTotalCartAmount} = useContext(StoreContext);
-    const navigate = useNavigate();
 
-    const handleChange = () => {
-      navigate("/payment");
-    }
+    
   return (
     <>    
       <form className="place_order">
@@ -53,7 +49,7 @@ const PlaceOrder = () => {
                 <b>${getTotalCartAmount() === 0? 0:getTotalCartAmount()+10}</b>
               </div>
             </div>
-            <button onClick={handleChange}>PROCEED TO PAYMENT</button>
+            <button>PROCEED TO PAYMENT</button>
           </div>
         </div>
       </form>
