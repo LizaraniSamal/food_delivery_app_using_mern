@@ -6,11 +6,11 @@ import removeIcon from "../../assets/remove_icon_red.png";
 import { StoreContext } from "../../Context/StoreContext";
 
 const FoodItem = ({ id, name, price, image, description, category }) => {
-   const {cardItems,addToCart,removeFromCart} = useContext(StoreContext);
+   const {cardItems,addToCart,removeFromCart,url} = useContext(StoreContext);
   return (
     <div className="food_item">
       <div className="food_item_img_container">
-        <img src={image} alt="food_item" className="food_item_image"/>
+        <img src={url+"/images/"+image} alt="food_item" className="food_item_image"/>
         {!cardItems[id] ? (
           <img
               src={assets.add_icon_white}

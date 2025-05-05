@@ -3,6 +3,8 @@ import cors from "cors";
 import { connectDb } from "./config/db.js";
 import foodRouter from "./Routes/foodRoutes.js";
 import userRouter from "./Routes/userRoute.js";
+import cartRouter from "./Routes/cartRoutes.js";
+
 import "dotenv/config.js"
 
 //app config
@@ -19,6 +21,7 @@ connectDb();
 //api endpoint
 app.use("/api/food",foodRouter);  //we have any method get post etc always use "/api/food"
 app.use("/api/user",userRouter);
+app.use("/api/cart",cartRouter);
 app.use("/images",express.static("uploads")); //we can see all the images which is present inside uploads by using http://127.0.0.1:4000/images/1737448865439food_6.png
 app.get("/",(req,res) => {
     res.send("API working");
